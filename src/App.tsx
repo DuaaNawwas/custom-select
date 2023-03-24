@@ -1,25 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { FC, useState } from "react";
+import Select, { SelectOption } from "./components/Select";
+
+const options = [
+  { label: "one", value: 1 },
+  { label: "two", value: 2 },
+  { label: "three", value: 3 },
+  { label: "four", value: 4 },
+];
 
 function App() {
+  const [value, setValue] = useState<SelectOption | undefined>(options[0]);
+  const [values, setValues] = useState<SelectOption[]>([]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Select options={options} value={value} onChange={(o) => setValue(o)} />
+      <Select
+        multiple={true}
+        options={options}
+        value={values}
+        onChange={(o) => setValues(o)}
+      />
+    </>
   );
 }
 
